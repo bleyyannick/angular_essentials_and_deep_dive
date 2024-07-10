@@ -21,7 +21,11 @@ import { TasksComponent } from "./tasks/tasks.component";
             </li>
           }
         </ul>
-        <app-tasks [name]="selectedUser_name" />
+        @if(selectedUser_name) {
+          <app-tasks [name]="selectedUser_name" />
+        } @else {
+          <p>Select a user to see their tasks</p>
+        }
        </main>
   `,
     styleUrl: './app.component.css',
@@ -33,7 +37,7 @@ export class AppComponent {
 
     onSelectUser(id: string): void{
        const userIndex = this.DUMMY_USERS.findIndex((user => user.id === id));
-       this.selectedUser_name = this.DUMMY_USERS[userIndex]!.name
+       this.selectedUser_name = this.DUMMY_USERS[userIndex].name
     }
 
 }
