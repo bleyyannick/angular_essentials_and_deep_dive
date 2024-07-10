@@ -13,7 +13,7 @@ import { TasksComponent } from "./tasks/tasks.component";
        <app-header />
        <main>
         <ul id="users">
-          @for( dummyUser of DUMMY_USERS; track dummyUser.id) {
+          @for( dummyUser of users; track dummyUser.id) {
             <li>
               <app-user 
                  [dummyUser]="dummyUser" 
@@ -21,8 +21,8 @@ import { TasksComponent } from "./tasks/tasks.component";
             </li>
           }
         </ul>
-        @if(selectedUser_name) {
-          <app-tasks [name]="selectedUser_name" />
+        @if(selectedUser_name && selectedUser_id) {
+          <app-tasks [selectedUser_id]="selectedUser_id" [name]="selectedUser_name" />
         } @else {
           <p>Select a user to see their tasks</p>
         }
@@ -32,12 +32,16 @@ import { TasksComponent } from "./tasks/tasks.component";
     imports: [HeaderComponent, UserComponent, TasksComponent]
 })
 export class AppComponent {
-    DUMMY_USERS: dummyUser[] = DUMMY_USERS;
-    selectedUser_name!: string; 
+    users: dummyUser[] = DUMMY_USERS; 
+    selectedUser_id = 'u1';
+
+    get selectedUser_name(): string {
+       const userIndex = this.users.findIndex((user => user.id === this.selectedUser_id));
+       return this.users[userIndex].name
+    }
 
     onSelectUser(id: string): void{
-       const userIndex = this.DUMMY_USERS.findIndex((user => user.id === id));
-       this.selectedUser_name = this.DUMMY_USERS[userIndex].name
+      this.selectedUser_id = id;
     }
 
 }
