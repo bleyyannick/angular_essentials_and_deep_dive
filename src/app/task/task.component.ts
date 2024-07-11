@@ -1,13 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output, Output } from '@angular/core';
+import { task } from './task.model';
 
 
-export interface task {
-  id: string; 
-  userId: string;
-  summary: string;
-  dueDate: string;
-  title: string;
-}
 @Component({
   selector: 'app-task',
   standalone: true,
@@ -18,7 +12,7 @@ export interface task {
        <time datetime="">{{ task().dueDate}}</time>
        <p> {{ task().summary}} </p>
        <p class="actions">
-           <button>Complete</button>
+           <button (click)="onCompleteTask()">Complete</button>
        </p>
     </article>
   `,
@@ -27,4 +21,10 @@ export interface task {
 export class TaskComponent {
    task = input.required<task>();
    userId = input.required<string>();
+   complete = output<string>();
+
+
+   onCompleteTask() {
+     this.complete.emit(this.task().id);
+   }
 }
