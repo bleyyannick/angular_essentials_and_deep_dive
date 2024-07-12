@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../node_modules/@angular/common/locales/extra/fr.mjs"],
+  "sourcesContent": ["/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://angular.io/license\n */\n// THIS CODE IS GENERATED - DO NOT MODIFY.\nconst u = undefined;\nexport default [[[\"minuit\", \"midi\", \"mat.\", \"ap.m.\", \"soir\", \"nuit\"], u, [\"minuit\", \"midi\", \"du matin\", \"de l’après-midi\", \"du soir\", \"du matin\"]], [[\"minuit\", \"midi\", \"mat.\", \"ap.m.\", \"soir\", \"nuit\"], u, [\"minuit\", \"midi\", \"matin\", \"après-midi\", \"soir\", \"nuit\"]], [\"00:00\", \"12:00\", [\"04:00\", \"12:00\"], [\"12:00\", \"18:00\"], [\"18:00\", \"24:00\"], [\"00:00\", \"04:00\"]]];\n"],
+  "mappings": ";;;AAQA,IAAM,IAAI;AACV,IAAO,aAAQ,CAAC,CAAC,CAAC,UAAU,QAAQ,QAAQ,SAAS,QAAQ,MAAM,GAAG,GAAG,CAAC,UAAU,QAAQ,YAAY,mBAAmB,WAAW,UAAU,CAAC,GAAG,CAAC,CAAC,UAAU,QAAQ,QAAQ,SAAS,QAAQ,MAAM,GAAG,GAAG,CAAC,UAAU,QAAQ,SAAS,cAAc,QAAQ,MAAM,CAAC,GAAG,CAAC,SAAS,SAAS,CAAC,SAAS,OAAO,GAAG,CAAC,SAAS,OAAO,GAAG,CAAC,SAAS,OAAO,GAAG,CAAC,SAAS,OAAO,CAAC,CAAC;",
+  "names": []
+}

@@ -3,12 +3,13 @@ import { TaskComponent } from "../task/task.component";
 import { dummyTasks } from '../dummy_tasks';
 import { task } from '../task/task.model';
 import { NewTaskComponent } from '../new-task/new-task.component';
+import { TaskContainer } from './task-container';
 
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent, NewTaskComponent],
+  imports: [TaskComponent, NewTaskComponent, TaskContainer],
   template: `
    <section id="tasks">
       <header>
@@ -21,16 +22,16 @@ import { NewTaskComponent } from '../new-task/new-task.component';
       @if(isNewTaskVisible) {
         <app-new-task (addNewTask)="onAddNewTask($event)" (toDisableNewTask)="closeNewTask()" />
       }
-      <ul>
-        <li>
-          @for( task of selectedUserTasks; track task.id) {
-            <app-task (complete)="onCompleteTask($event)" [userId]="selectedUser_id" [task]="task" />
-          }
-          @if (!this.selectedUserTasks.length) {
-               <p>No tasks found</p>
-              }
-        </li>
-      </ul>
+      <task-container>
+          <li>
+            @for( task of selectedUserTasks; track task.id) {
+              <app-task (complete)="onCompleteTask($event)" [userId]="selectedUser_id" [task]="task" />
+            }
+            @if (!this.selectedUserTasks.length) {
+                <p>No tasks found</p>
+                }
+          </li>
+      </task-container>
 
    </section>
   `,

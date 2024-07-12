@@ -1,34 +1,67 @@
 {
-  "hash": "a45c5993",
-  "configHash": "b034e993",
-  "lockfileHash": "b9bda622",
-  "browserHash": "4912f91b",
+  "hash": "72dd7200",
+  "configHash": "aa3d70c6",
+  "lockfileHash": "d617560d",
+  "browserHash": "7abefa03",
   "optimized": {
+    "@angular/common": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "91bcc723",
+      "needsInterop": false
+    },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "a4e76b32",
+      "fileHash": "50222f65",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "1383f9eb",
+      "fileHash": "bb573289",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "68dece35",
+      "fileHash": "b357c42d",
+      "needsInterop": false
+    },
+    "@angular/common/locales/it": {
+      "src": "../../../../../node_modules/@angular/common/locales/it.mjs",
+      "file": "@angular_common_locales_it.js",
+      "fileHash": "9cefadd9",
+      "needsInterop": false
+    },
+    "@angular/common/locales/extra/it": {
+      "src": "../../../../../node_modules/@angular/common/locales/extra/it.mjs",
+      "file": "@angular_common_locales_extra_it.js",
+      "fileHash": "1f354a97",
+      "needsInterop": false
+    },
+    "@angular/common/locales/fr": {
+      "src": "../../../../../node_modules/@angular/common/locales/fr.mjs",
+      "file": "@angular_common_locales_fr.js",
+      "fileHash": "cf2d1d71",
+      "needsInterop": false
+    },
+    "@angular/common/locales/extra/fr": {
+      "src": "../../../../../node_modules/@angular/common/locales/extra/fr.mjs",
+      "file": "@angular_common_locales_extra_fr.js",
+      "fileHash": "7e779b4a",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-XJKJ3KQW": {
-      "file": "chunk-XJKJ3KQW.js"
+    "chunk-2ISPX6ZC": {
+      "file": "chunk-2ISPX6ZC.js"
     },
-    "chunk-BPKI65BB": {
-      "file": "chunk-BPKI65BB.js"
+    "chunk-5NHQMRMA": {
+      "file": "chunk-5NHQMRMA.js"
+    },
+    "chunk-J4B6MK7R": {
+      "file": "chunk-J4B6MK7R.js"
     }
   }
 }
