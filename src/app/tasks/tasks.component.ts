@@ -19,7 +19,7 @@ import { NewTaskComponent } from '../new-task/new-task.component';
       </header>
       
       @if(isNewTaskVisible) {
-        <app-new-task (toDisableNewTask)="closeNewTask()" />
+        <app-new-task (addNewTask)="onAddNewTask($event)" (toDisableNewTask)="closeNewTask()" />
       }
       <ul>
         <li>
@@ -49,6 +49,12 @@ export class TasksComponent {
 
   onCompleteTask(id: string): void {
       this.tasks = this.tasks.filter(task => task.id !== id);
+  }
+
+  onAddNewTask(newTask: task): void {
+    newTask.userId = this.selectedUser_id;
+    this.tasks = [...this.tasks, newTask];
+    this.isNewTaskVisible = false;
   }
   toEnableNewTask(): void {
     this.isNewTaskVisible = true;

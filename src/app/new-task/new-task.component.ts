@@ -1,5 +1,6 @@
 import { Component, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { task } from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -35,6 +36,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class NewTaskComponent {
   toDisableNewTask = output<boolean>();
+  addNewTask = output<task>();
+
   newTaskForm = new FormGroup({
     taskTitle: new FormControl(''),
     taskSummary: new FormControl(''),
@@ -46,9 +49,14 @@ export class NewTaskComponent {
   }
 
   submitFormTask(): void {
-    console.log(this.newTaskForm.value.taskTitle);
-    console.log(this.newTaskForm.value.taskSummary);
-    console.log(this.newTaskForm.value.taskDate);
+    this.addNewTask.emit({
+      id: Math.random().toString(36).substr(2, 9),
+      userId: '1',
+      title: this.newTaskForm.value.taskTitle ?? '',
+      summary: this.newTaskForm.value.taskSummary?? '',
+      dueDate: this.newTaskForm.value.taskDate ?? ''
+    });
+
   } 
   
   
