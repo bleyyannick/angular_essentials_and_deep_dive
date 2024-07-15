@@ -1,9 +1,10 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, inject, Input, input } from '@angular/core';
 import { TaskComponent } from "../task/task.component";
 import { dummyTasks } from '../dummy_tasks';
 import { task } from '../task/task.model';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { TaskContainer } from './task-container';
+import { tasksService } from './tasks.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { TaskContainer } from './task-container';
       </header>
       
       @if(isNewTaskVisible) {
-        <app-new-task (addNewTask)="onAddNewTask($event)" (toDisableNewTask)="closeNewTask()" />
+        <app-new-task [userId]="selectedUser_id" (onClose)="close($event)" />
       }
       <task-container>
           <li>
@@ -39,31 +40,30 @@ import { TaskContainer } from './task-container';
 })
 export class TasksComponent {
   name = input.required<string>();
-  tasks :task[] = dummyTasks;
   isNewTaskVisible = false; 
   @Input() selectedUser_id!: string;
 
+  tasksService = inject(tasksService);
+
 
   get selectedUserTasks(): task[] {
-    return this.tasks.filter(task => task.userId === this.selectedUser_id);
+    return this.tasksService.getuserTasks(this.selectedUser_id);
   }
 
   onCompleteTask(id: string): void {
-      this.tasks = this.tasks.filter(task => task.id !== id);
+    this.tasksService.completeTask(id);
   }
 
-  onAddNewTask(newTask: task): void {
-    newTask.userId = this.selectedUser_id;
-    this.tasks = [...this.tasks, newTask];
-    this.isNewTaskVisible = false;
-  }
+  
   toEnableNewTask(): void {
     this.isNewTaskVisible = true;
   }
 
-  closeNewTask(): void {
-    this.isNewTaskVisible = false;
+  close(IsVisisible: boolean): void {
+    this.isNewTaskVisible = IsVisisible;
   }
+
+  
 }
 
 

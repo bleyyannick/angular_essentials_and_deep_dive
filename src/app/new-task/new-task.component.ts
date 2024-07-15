@@ -1,16 +1,17 @@
-import { Component, output } from '@angular/core';
+import { Component, inject, Input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { task } from '../task/task.model';
+import { tasksService } from '../tasks/tasks.service';
 
 @Component({
   selector: 'app-new-task',
   standalone: true,
   imports: [ReactiveFormsModule],
   template:`
-    <div class="backdrop" (click)="closeNewTask()"></div>
+    <div class="backdrop" (click)="close()"></div>
     <dialog open>
       <h2>Add Task</h2>
-      <form [formGroup]="newTaskForm" (submit)="submitFormTask()">
+      <form [formGroup]="newTaskForm" (submit)="submitFormTask(userId)">
         <p>
           <label for="title">Title</label>
           <input type="text" id="title" name="title" formControlName="taskTitle" />
@@ -27,7 +28,7 @@ import { task } from '../task/task.model';
         </p>
 
         <p class="actions">
-          <button type="button" (click)="closeNewTask()">Cancel</button>
+          <button type="button" (click)="close()">Cancel</button>
           <button type="submit">Create</button>
         </p>
       </form>
@@ -35,8 +36,13 @@ import { task } from '../task/task.model';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
-  toDisableNewTask = output<boolean>();
+  onClose = output<boolean>();
   addNewTask = output<task>();
+  @Input() userId!: string;
+
+
+  tasksService = inject(tasksService);
+
 
   newTaskForm = new FormGroup({
     taskTitle: new FormControl(''),
@@ -44,20 +50,18 @@ export class NewTaskComponent {
     taskDate: new FormControl('')
   });
 
-  closeNewTask(): void {
-    this.toDisableNewTask.emit(false);
+  close(): void {
+    this.onClose.emit(false);
   }
 
-  submitFormTask(): void {
-    this.addNewTask.emit({
+  submitFormTask( userId: string) {
+    this.tasksService.addTask({
       id: Math.random().toString(36).substr(2, 9),
-      userId: '1',
+      userId: userId,
       title: this.newTaskForm.value.taskTitle ?? '',
       summary: this.newTaskForm.value.taskSummary?? '',
       dueDate: this.newTaskForm.value.taskDate ?? ''
     });
-
+    this.close();
   } 
-  
-  
 }
