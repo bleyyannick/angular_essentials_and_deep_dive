@@ -1,8 +1,9 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { task } from './task.model';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localefr from '@angular/common/locales/fr';
 import localeItExtra from '@angular/common/locales/extra/fr';
+import { tasksService } from '../tasks/tasks.service';
 
 registerLocaleData(localefr, 'fr-FR', localeItExtra);
 
@@ -25,11 +26,10 @@ registerLocaleData(localefr, 'fr-FR', localeItExtra);
 })
 export class TaskComponent {
    task = input.required<task>();
-   userId = input.required<string>();
-   complete = output<string>();
 
+   tasksService = inject(tasksService);
 
    onCompleteTask() {
-     this.complete.emit(this.task().id);
+     this.tasksService.completeTask(this.task().id);
    }
 }

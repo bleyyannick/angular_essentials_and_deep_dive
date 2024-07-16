@@ -1,6 +1,5 @@
 import { Component, inject, Input, input } from '@angular/core';
 import { TaskComponent } from "../task/task.component";
-import { dummyTasks } from '../dummy_tasks';
 import { task } from '../task/task.model';
 import { NewTaskComponent } from '../new-task/new-task.component';
 import { TaskContainer } from './task-container';
@@ -26,7 +25,7 @@ import { tasksService } from './tasks.service';
       <task-container>
           <li>
             @for( task of selectedUserTasks; track task.id) {
-              <app-task (complete)="onCompleteTask($event)" [userId]="selectedUser_id" [task]="task" />
+              <app-task [task]="task" />
             }
             @if (!this.selectedUserTasks.length) {
                 <p>No tasks found</p>
@@ -39,8 +38,10 @@ import { tasksService } from './tasks.service';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  name = input.required<string>();
+
   isNewTaskVisible = false; 
+
+  name = input.required<string>();
   @Input() selectedUser_id!: string;
 
   tasksService = inject(tasksService);
@@ -50,11 +51,6 @@ export class TasksComponent {
     return this.tasksService.getuserTasks(this.selectedUser_id);
   }
 
-  onCompleteTask(id: string): void {
-    this.tasksService.completeTask(id);
-  }
-
-  
   toEnableNewTask(): void {
     this.isNewTaskVisible = true;
   }
@@ -62,8 +58,6 @@ export class TasksComponent {
   close(IsVisisible: boolean): void {
     this.isNewTaskVisible = IsVisisible;
   }
-
-  
 }
 
 
